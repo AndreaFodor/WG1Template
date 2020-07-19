@@ -588,6 +588,8 @@ class DataMCHistogramPlot(HistogramPlot):
             uhmc = unp.uarray(sum_w, np.sqrt(sum_w2))
             ratio = (uhdata - uhmc) / uhdata
 
+            ylims = max(abs(unp.nominal_values(ratio)) + unp.std_devs(ratio))+0.1
+            ax2.set_ylim((-1 * ylims, ylims))
             ax2.axhline(y=0, color=plot_style.KITColors.dark_grey, alpha=0.8)
             ax2.errorbar(bin_mids, unp.nominal_values(ratio), yerr=unp.std_devs(ratio),
                          ls="", marker=".", color=plot_style.KITColors.kit_black)
